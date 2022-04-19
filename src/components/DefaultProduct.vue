@@ -1,11 +1,10 @@
 <template>
     <div class="defaultProducts">
-        
-                <Product 
-                 v-for="product in products"
-                 :key="product.id"
-                 :product="product"
-                />
+        <Product 
+            v-for="product in products"
+            :key="product.id"
+            :product="product"
+        />
     </div>
 </template>
 
@@ -21,7 +20,6 @@ export default {
 @import "@/assets/scss/variable.scss";
 
     .defaultProducts{
-        border: 1px solid red;
         margin: 20px;
         display: flex;
         align-items: center;

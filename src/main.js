@@ -22,50 +22,7 @@ initializeApp(firebaseConfig);
 
 
 
-createApp(App).directive('lazyimage', {
-    mounted: (el) => {
-        function loadImage() {
-          
-            const anime = el.children[0]
-            const imageElement = el.children[1]
-            // console.log(imageElement)
-            if (imageElement) {
-              imageElement.addEventListener("load", () => {
-                anime.style.display = 'none';
-              });
-              imageElement.addEventListener("error", () => console.log("error"));
-              imageElement.src = imageElement.dataset.url;
-            } else{
-                console.log('no img found')
-            }
-          }
-      
-          function handleIntersect(entries, observer) {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                loadImage();
-                observer.unobserve(el);
-              }
-            });
-          }
-      
-          function createObserver() {
-            const options = {
-              root: null,
-              threshold: "1"
-            };
-            const observer = new IntersectionObserver(handleIntersect, options);
-            observer.observe(el);
-          }
-          if (window["IntersectionObserver"]) {
-            createObserver();
-            
-          } else {
-            loadImage();
-          }
-
-    }
-  }).use(store).use(router).mount('#app')
+createApp(App).use(store).use(router).mount('#app')
 
 
 // .use(lazyPlugin, {

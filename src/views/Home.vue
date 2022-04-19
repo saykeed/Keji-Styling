@@ -1,7 +1,7 @@
 <template>
   <div class="home">
       <Banner />
-      <Gridsection :grids="grids"/>
+      <Gridsection :images="images"/>
       <div class="subHeading">
         <h2><hr>TRENDING<hr></h2>
         <p>Top view in this week</p>
@@ -27,7 +27,6 @@ export default {
    setup() {
       const db = getFirestore()
       const products = ref([])
-      const grids = ref([])
       const images = ref([
           {imgUrl: 'https://cdn.shopify.com/s/files/1/0332/6420/5963/files/young-beautiful-woman-looking-trendy-girl-casual-summer-clothes-positive-funny-model-winking_1728x.jpg?v=1606209527', class: 'one', button: 'Women'},
           {imgUrl: 'https://cdn.shopify.com/s/files/1/0332/6420/5963/files/bag2_900x.jpg?v=1581730050', class: 'two', button: 'Accessories'},
@@ -42,33 +41,10 @@ export default {
         });
       }
 
-      const fetchGridData = async () => {
-        const querySnapshot = await getDocs(collection(db, "GridInfo"));
-        querySnapshot.forEach((doc) => {
-          grids.value.push({id: doc.id, ...doc.data()})
-        });
-        console.log(grids)
-      }
-
-
-      const delay = () => {
-        setTimeout(() => {
-          images.value = [
-            {imgUrl: 'https://cdn.shopify.com/s/files/1/0332/6420/5963/files/young-beautiful-woman-looking-trendy-girl-casual-summer-clothes-positive-funny-model-winking_1728x.jpg?v=1606209527', class: 'one', button: 'Women'},
-            {imgUrl: 'https://cdn.shopify.com/s/files/1/0332/6420/5963/files/bag2_900x.jpg?v=1581730050', class: 'two', button: 'Accessories'},
-            {imgUrl: 'https://cdn.shopify.com/s/files/1/0332/6420/5963/files/lemai3020112688_m4_2-0_900x.jpg?v=1606229788', class: 'three', button: 'Footwear'},
-            {imgUrl: 'https://cdn.shopify.com/s/files/1/0332/6420/5963/files/p24-21_900x.jpg?v=1581731327', class: 'four', button: 'Watches'}
-          ]
-        }, 1000);
-      }
-      
-
-    
       onMounted(() => {
         fetchProducts()
-        fetchGridData()
       })
-    return { products, images, grids }
+    return { products, images }
   }
 }
 </script>
