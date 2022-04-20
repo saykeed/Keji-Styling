@@ -23,7 +23,7 @@ export default {
         margin: 20px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around;
         flex-wrap: wrap;
     }
 </style>

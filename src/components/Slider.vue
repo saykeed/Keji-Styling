@@ -62,7 +62,7 @@ export default {
 
 
     /*for the responsieve screen of md and above*/
-    @media screen and (min-width:800px){
+    @media screen and (min-width:700px){
         img{
             height: calc(100vh - 160px);
         }

@@ -11,13 +11,13 @@
           <p class="title">{{product.title}}</p>
           <p class="price">NGN {{ product.price }}</p>
       </div>
-      <i class="material-icons wish" @click="wishButton(product.id)">{{ wishIcon }}</i>
+      <i class="material-icons delete" @click="deleteFromLS(product.id)"> delete </i>
   </div>
 </template>
 
 <script>
 import { ref, computed, onMounted } from 'vue'
-import Kejianime from '../components/Kejianime.vue'
+import Kejianime from './Kejianime.vue'
 
 export default {
     components: { Kejianime },
@@ -65,59 +65,21 @@ export default {
             }
         }
     },
-    setup(props ) {
+    setup(props, { emit }) {
         // variables
         const fav = ref(false);
         
 
       // functions
-        // functions that saves to local storage
-        const saveToLS =  (id) => {
-            let oldData = JSON.parse(localStorage.getItem('favorites'))
-            oldData.push(id)
-            
-            localStorage.setItem('favorites', JSON.stringify(oldData))
-        }
         // function that deletes from local storage
         const deleteFromLS =  (id) => {
             let favs = JSON.parse(localStorage.getItem('favorites'))
-            localStorage.setItem('favorites', JSON.stringify(favs.filter(favId => favId !== id)))
-        }
-        // function that controls whether to add or delete from local storage
-        const wishButton = (id) => {
-            if (!localStorage.getItem('favorites')) {
-                localStorage.setItem('favorites', '[]')
-            }
-            let favs = JSON.parse(localStorage.getItem('favorites'))
-            if (favs.includes(id)) {
-                deleteFromLS(id)
-                fav.value = false
-            } else {
-                saveToLS(id)
-                fav.value = true
-            }
+            localStorage.setItem('favorites', JSON.stringify(favs.filter(favId => favId !== id)));
+            emit('productRemoved', [id])
         }
 
-        // computed properties
-        const wishIcon = computed(() => {
-            if(fav.value) {
-                return 'favorite'
-            } else {
-                return 'favorite_border'
-            }
-        })
         
-        // mounted
-        onMounted(() => {
-            let favs = JSON.parse(localStorage.getItem('favorites'))
-            if (favs !== null && favs.includes(props.product.id)) {
-                fav.value = true
-            } else {
-                fav.value = false
-            }
-        })
-
-        return { wishButton, wishIcon }
+        return { deleteFromLS }
     }
 }
 </script>
@@ -190,12 +152,11 @@ export default {
             }
         }
 
-        i.wish{
+        i.delete{
             position: absolute;
             top: 5%;
             left: 5%;
             cursor: pointer;
-            color: red;
 
             &:active{
                 animation: shakeVertical 1s  linear;

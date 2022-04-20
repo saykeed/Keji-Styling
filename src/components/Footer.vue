@@ -13,17 +13,19 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { ref, watch } from 'vue'
 export default {
     setup() {
+        // variables
         const links = ref([
             {text: 'Home', tag: 'Home', route: '/', icon: 'home'},
             // {text: 'Shop', tag: 'Shop', route: '/', icon: 'dashboard'},
-            {text: 'Wishlist', tag: 'Wishlist', route: '/', icon: 'favorite_border'},
-            {text: 'Categories', tag: 'Categories', route: '/', icon: 'dashboard'}
+            {text: 'Wishlist', tag: 'Wishlist', route: '/wishlist', icon: 'favorite_border'},
+            {text: 'Categories', tag: 'Categories', route: '/categories', icon: 'dashboard'}
         ])
-        const wishlist = ref(0)
+        const wishlist = ref(0);
 
+        
 
         return { links, wishlist }
     }
@@ -79,6 +81,5 @@ export default {
             }
         }
     }
-
 
 </style>

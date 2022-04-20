@@ -9,13 +9,14 @@
       <DefaultProduct 
         :products="products"
       />
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error, similique. Harum, ad aliquid voluptatem consequatur vitae tempora velit sequi dolorum ullam vel corporis veritatis excepturi deleniti ratione? Iure, accusamus culpa?</p>
+      <Pagefooter />
   </div>
 </template>
 
 
 <script>
 import Banner from '../components/Banner.vue'
+import Pagefooter from '../components/Pagefooter.vue'
 import Gridsection from '../components/Gridsection.vue'
 import DefaultProduct from '../components/DefaultProduct.vue'
 import { collection, getDocs, getFirestore } from "firebase/firestore";
@@ -23,7 +24,7 @@ import { onMounted, ref } from 'vue';
 
 export default {
   name: 'Home',
-  components: { Banner, Gridsection, DefaultProduct },
+  components: { Banner, Gridsection, DefaultProduct, Pagefooter },
    setup() {
       const db = getFirestore()
       const products = ref([])
