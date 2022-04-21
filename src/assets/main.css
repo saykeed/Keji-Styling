@@ -6,7 +6,9 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
+
 
 /* 
 font-family: 'IM Fell Double Pica', serif;

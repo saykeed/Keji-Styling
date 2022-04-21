@@ -18,6 +18,7 @@
 <script>
 import { ref, computed, onMounted } from 'vue'
 import Kejianime from '../components/Kejianime.vue'
+import {useStore} from 'vuex'
 
 export default {
     components: { Kejianime },
@@ -68,6 +69,7 @@ export default {
     setup(props ) {
         // variables
         const fav = ref(false);
+        const store = useStore()
         
 
       // functions
@@ -77,11 +79,13 @@ export default {
             oldData.push(id)
             
             localStorage.setItem('favorites', JSON.stringify(oldData))
+            updateFavAmount()
         }
         // function that deletes from local storage
         const deleteFromLS =  (id) => {
             let favs = JSON.parse(localStorage.getItem('favorites'))
             localStorage.setItem('favorites', JSON.stringify(favs.filter(favId => favId !== id)))
+            updateFavAmount()
         }
         // function that controls whether to add or delete from local storage
         const wishButton = (id) => {
@@ -96,6 +100,10 @@ export default {
                 saveToLS(id)
                 fav.value = true
             }
+        }
+        //function that dispatch the action in vuex store to update the wishlist amount label
+        const updateFavAmount = () => {
+            store.dispatch('getFavAmount')
         }
 
         // computed properties

@@ -18,6 +18,7 @@
 <script>
 import { ref, computed, onMounted } from 'vue'
 import Kejianime from './Kejianime.vue'
+import {useStore} from 'vuex'
 
 export default {
     components: { Kejianime },
@@ -68,6 +69,7 @@ export default {
     setup(props, { emit }) {
         // variables
         const fav = ref(false);
+        const store = useStore()
         
 
       // functions
@@ -76,6 +78,11 @@ export default {
             let favs = JSON.parse(localStorage.getItem('favorites'))
             localStorage.setItem('favorites', JSON.stringify(favs.filter(favId => favId !== id)));
             emit('productRemoved', [id])
+            updateFavAmount()
+        }
+        //function that dispatch the action in vuex store to update the wishlist amount label
+        const updateFavAmount = () => {
+            store.dispatch('getFavAmount')
         }
 
         

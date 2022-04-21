@@ -7,13 +7,14 @@
         >
           <i class="material-icons">{{ link.icon }}</i>
           <p>{{ link.text }}</p>
-          <p v-show="link.tag == 'Wishlist'" class="tag">1</p>
+          <p v-show="link.tag == 'Wishlist'" class="tag">{{favAmount}}</p>
         </router-link>
     </div>
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import {useStore} from 'vuex'
 export default {
     setup() {
         // variables
@@ -23,12 +24,24 @@ export default {
             {text: 'Wishlist', tag: 'Wishlist', route: '/wishlist', icon: 'favorite_border'},
             {text: 'Categories', tag: 'Categories', route: '/categories', icon: 'dashboard'}
         ])
-        const wishlist = ref(0);
+        const store = useStore()
 
-        
 
-        return { links, wishlist }
+
+        // computed properties
+        const favAmount = computed(() => {
+            return store.state.fav
+        })
+
+        // mounted hook
+        onMounted(() => {
+            store.dispatch('getFavAmount')
+        })
+
+
+        return { links, favAmount }
     }
+    
 }
 </script>
 

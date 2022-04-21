@@ -4,25 +4,25 @@
 
         <form class="uploadForm" ref="getForm" @submit.prevent="uploadProduct">
             <p>Product Title</p>
-            <input type="text" name="title" >
+            <input type="text" name="title" required >
             <p>Product Price</p>
-            <input type="text" name="price" >
+            <input type="text" name="price" required >
             <p class="imageP">Product Image</p>
             <div class="file">
-                <input type="file" name="image" @change="uploadImage">
+                <input type="file" name="image" required @change="uploadImage">
                 <Spinner v-if="spinStatus" class="spin"/>
             </div>
             
             <p>Description</p>
-            <textarea name="description" ></textarea>
-            <button>Upload</button>
+            <textarea name="description" required ></textarea>
+            <button :disabled="imageDone == false">Upload</button>
             
         </form>
     </div>
 </template>
 
 <script>
-import Spinner from '../components/Spinner.vue'
+import Spinner from '@/components/Spinner.vue'
 import { ref } from 'vue';
 import { getStorage, uploadBytes, 
 ref as storageRef, getDownloadURL } from "firebase/storage";
@@ -38,11 +38,13 @@ export default {
         const getForm = ref(null)
         const spinStatus = ref(false)
         const photoUrl = ref('')
+        const imageDone = ref(true)
         
 
         // functions
         const uploadImage = () => {
-            spinStatus.value = true
+            spinStatus.value = true;
+            imageDone.value = false;
             const imageFile = getForm.value.image.files[0]
             const imageName = imageFile.name +'_' + new Date()
             const imageRef = storageRef(storage, imageName);
@@ -56,6 +58,7 @@ export default {
                 .then((url) => {
                     photoUrl.value = url;
                     spinStatus.value = false;
+                    imageDone.value = true;
                 })
             })
             .catch( err => console.log(err, 'error now'))
@@ -79,7 +82,7 @@ export default {
 
 
 
-      return {uploadProduct, uploadImage, getForm, spinStatus }
+      return {uploadProduct, uploadImage, getForm, spinStatus, imageDone }
     }
 }
 </script>
@@ -158,9 +161,13 @@ export default {
                 border-radius: 20px;
                 display: block;
                 margin: 0 auto;
-                background: green;
+                background: $kejiBlue;
                 color: white;
                 border: none;
+
+                &:disabled{
+                    opacity: 0.2;
+                }
             }
         }
     }

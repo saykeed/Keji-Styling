@@ -26,11 +26,11 @@ export default {
         // variables
         const links = ref([
             // {text: 'Shop', route: '/Shop'},
-            {text: 'Wishlist', route: '/Wishlist'},
-            {text: 'Categories', route: '/Categories'},
-            {text: 'Cart', route: '/Cart'},
-            {text: 'Admin Login', route: '/Login'},
-            {text: 'Post Product', route: '/Post'}
+            {text: 'Wishlist', route: '/wishlist'},
+            {text: 'Categories', route: '/categories'},
+            {text: 'Cart', route: '/cart'},
+            {text: 'Admin Login', route: '/admin/dashboard'}
+            // {text: 'Post Product', route: '/post'}
         ])
 
 

@@ -27,15 +27,30 @@ const routes = [
     name: 'Wishlist',
     component: () => import('../views/Wishlist.vue')
   },
-  {
-    path: '/post',
-    name: 'Post',
-    component: () => import('../views/Post.vue')
-  },
+  // {
+  //   path: '/post',
+  //   name: 'Post',
+  //   component: () => import('../views/Post.vue')
+  // },
   {
     path: '/admin/dashboard',
     name: 'Dashboard',
     component: () => import('../views/Admin_page/Dashboard.vue')
+  },
+  {
+    path: '/admin/post',
+    name: 'Post',
+    component: () => import('../views/Admin_page/Post.vue')
+  },
+  {
+    path: '/admin/delete',
+    name: 'Delete',
+    component: () => import('../views/Admin_page/Delete.vue')
+  },
+  {
+    path: '/admin/update',
+    name: 'Update',
+    component: () => import('../views/Admin_page/Update.vue')
   }
 ]
 

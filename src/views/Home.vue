@@ -41,10 +41,9 @@ export default {
           products.value.push({id: doc.id, ...doc.data()})
         });
       }
-
-      onMounted(() => {
+      
+      // fetching the products immediately the page loads
         fetchProducts()
-      })
     return { products, images }
   }
 }
