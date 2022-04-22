@@ -4,7 +4,7 @@
           <Kejianime class="anime"/>
           <img :data-url="product.imgUrl" alt="">
           <div class="cart">
-            <i class="material-icons">shopping_cart</i>
+            <i class="material-icons" @click="addToCart(product.id)">shopping_cart</i>
         </div>
       </div>
       <div class="otherInfo">
@@ -73,7 +73,7 @@ export default {
         
 
       // functions
-        // functions that saves to local storage
+        // functions that saves to local storage (favorites)
         const saveToLS =  (id) => {
             let oldData = JSON.parse(localStorage.getItem('favorites'))
             oldData.push(id)
@@ -81,7 +81,7 @@ export default {
             localStorage.setItem('favorites', JSON.stringify(oldData))
             updateFavAmount()
         }
-        // function that deletes from local storage
+        // function that deletes from local storage (favorites)
         const deleteFromLS =  (id) => {
             let favs = JSON.parse(localStorage.getItem('favorites'))
             localStorage.setItem('favorites', JSON.stringify(favs.filter(favId => favId !== id)))
@@ -106,6 +106,24 @@ export default {
             store.dispatch('getFavAmount')
         }
 
+
+        // functions that handles adding product to cart
+        const addToCart = (id) => {
+            if (!localStorage.getItem('cart')) {
+                localStorage.setItem('cart', '[]')
+            }
+            let carted = JSON.parse(localStorage.getItem('cart'))
+            if (!carted.includes(id)) {
+                let oldData = JSON.parse(localStorage.getItem('cart'))
+                oldData.push(id)
+
+                localStorage.setItem('cart', JSON.stringify(oldData))
+                store.dispatch('getCartAmount')
+            } else {
+                alert('Product has been added to cart')
+            }
+        }
+
         // computed properties
         const wishIcon = computed(() => {
             if(fav.value) {
@@ -125,7 +143,7 @@ export default {
             }
         })
 
-        return { wishButton, wishIcon }
+        return { wishButton, wishIcon, addToCart }
     }
 }
 </script>

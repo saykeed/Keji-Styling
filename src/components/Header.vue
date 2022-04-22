@@ -2,25 +2,40 @@
     <div class="header">
         <i class="material-icons" @click="openSidebar">menu</i>
         <h2>Keji Styling</h2>
-        <div class="cart">
+        <router-link to="/cart" class="cart">
             <i class="material-icons">shopping_cart</i>
-            <p>1</p>
-        </div>
+            <p>{{cartAmount}}</p>
+        </router-link>
         
     </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { ref, computed, onMounted,  } from 'vue'
+import {useStore} from 'vuex'
+
 export default {
     setup(props, { emit }) {
-        
+        //variables
+        const store = useStore()
+
+
         // functions
         const openSidebar = () => {
             emit('showsidebar')
         }
 
-      return { openSidebar }
+        // computed properties
+        const cartAmount = computed(() => {
+            return store.state.cart
+        })
+
+        // mounted hook
+        onMounted(() => {
+            store.dispatch('getCartAmount')
+        })
+
+      return { openSidebar, cartAmount }
     }
 }
 </script>
@@ -44,6 +59,7 @@ export default {
         box-shadow: 2px 2px 2px $lightShadow;
 
         h2{
+            font-family: 'Roboto', sans-serif;
             color: $darkBlack;
         }
         i{
@@ -51,8 +67,20 @@ export default {
             cursor: pointer;
         }
 
-        div.cart{
+        a.cart{
             position: relative;
+            display: block;
+
+            &.router-link-exact-active{
+
+                i{
+                    color: $kejiBlue;
+                }
+                p{
+                    background: $kejiBlue;
+                }
+                
+            }
 
             p{
                 background: black;

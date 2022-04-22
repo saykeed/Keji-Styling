@@ -2,13 +2,17 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    fav: 0
+    fav: 0,
+    cart: 0
   },
   // getters: {
   // },
   mutations: {
     updateFav(state, payload) {
       state.fav = payload
+    },
+    updateCart(state, payload) {
+      state.cart = payload
     }
   },
   actions: {
@@ -18,6 +22,13 @@ export default createStore({
       }
       let favs = JSON.parse(localStorage.getItem('favorites'))
       context.commit('updateFav', favs.length)
+    },
+    getCartAmount(context, payload) {
+      if (!localStorage.getItem('cart')) {
+          localStorage.setItem('cart', '[]')
+      }
+      let carted = JSON.parse(localStorage.getItem('cart'))
+      context.commit('updateCart', carted.length)
     }
   }
 })

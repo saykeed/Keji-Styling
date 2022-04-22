@@ -1,6 +1,6 @@
 <template>
     <div class="delete">
-        <h3>Update Products</h3>
+        <h3>Delete Products</h3>
 
         <div class="deleteBox">
             <Deleteproduct 
@@ -47,6 +47,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "@/assets/scss/variable.scss";
 
+    .delete{
+
+        h3{
+            margin: 80px auto 20px;
+        }
+    }
 </style>

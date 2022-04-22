@@ -4,7 +4,7 @@
           <Kejianime class="anime"/>
           <img :data-url="product.imgUrl" alt="">
           <div class="cart">
-            <i class="material-icons">shopping_cart</i>
+            <i class="material-icons" @click="addToCart(product.id)">shopping_cart</i>
         </div>
       </div>
       <div class="otherInfo">
@@ -78,15 +78,29 @@ export default {
             let favs = JSON.parse(localStorage.getItem('favorites'))
             localStorage.setItem('favorites', JSON.stringify(favs.filter(favId => favId !== id)));
             emit('productRemoved', [id])
-            updateFavAmount()
-        }
-        //function that dispatch the action in vuex store to update the wishlist amount label
-        const updateFavAmount = () => {
             store.dispatch('getFavAmount')
+        }
+        
+
+        // functions that handles adding product to cart
+        const addToCart = (id) => {
+            if (!localStorage.getItem('cart')) {
+                localStorage.setItem('cart', '[]')
+            }
+            let carted = JSON.parse(localStorage.getItem('cart'))
+            if (!carted.includes(id)) {
+                let oldData = JSON.parse(localStorage.getItem('cart'))
+                oldData.push(id)
+
+                localStorage.setItem('cart', JSON.stringify(oldData))
+                store.dispatch('getCartAmount')
+            } else {
+                alert('Product has been added to cart')
+            }
         }
 
         
-        return { deleteFromLS }
+        return { deleteFromLS, addToCart }
     }
 }
 </script>

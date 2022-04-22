@@ -30,7 +30,6 @@ export default {
             {text: 'Categories', route: '/categories'},
             {text: 'Cart', route: '/cart'},
             {text: 'Admin Login', route: '/admin/dashboard'}
-            // {text: 'Post Product', route: '/post'}
         ])
 
 
@@ -84,10 +83,15 @@ export default {
                 padding: 10px 20px;
                 border-bottom: 1px solid $lightShadow;
                 -webkit-tap-highlight-color: transparent;
-                color: $fadeBlack;
+                color: $kejiBlue;
+
+                &.router-link-exact-active{
+                    background: $kejiBlue;
+                    color: white;
+                }
 
                 &:active{
-                    background: black;
+                    background: $kejiBlue;
                     color: white;
                 }
 

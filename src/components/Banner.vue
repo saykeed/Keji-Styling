@@ -99,7 +99,6 @@ export default {
     /*for the responsieve screen of md and above*/
     @media screen and (min-width:700px){
         .banner{
-            border: 1px solid red;
             height: calc(100vh - 160px);
         }
     }

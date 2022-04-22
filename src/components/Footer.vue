@@ -15,6 +15,7 @@
 <script>
 import { ref, computed, onMounted } from 'vue'
 import {useStore} from 'vuex'
+
 export default {
     setup() {
         // variables
@@ -74,7 +75,7 @@ export default {
 
 
             &.router-link-exact-active{
-                color: blue;
+                color: $kejiBlue;
             }
 
             p.tag{

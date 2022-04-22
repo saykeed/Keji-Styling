@@ -77,6 +77,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "@/assets/scss/variable.scss";
 
+    .update{
+
+        h3{
+            margin: 80px auto 20px;
+        }
+    }
 </style>

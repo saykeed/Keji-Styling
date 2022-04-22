@@ -92,13 +92,15 @@ export default {
 
     div.post{
 
-        h3 {
-            margin: 20px auto;
+        h3{
+            margin: 80px auto 20px;
         }
 
         form.uploadForm{
             text-align: left;
             padding: 15px;
+            max-width: 500px;
+            margin: 0 auto;
 
             p{
                 color: $fadeBlack;
