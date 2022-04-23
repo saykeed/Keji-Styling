@@ -25,7 +25,7 @@ export default {
     setup(props, { emit }) {
         // variables
         const links = ref([
-            // {text: 'Shop', route: '/Shop'},
+            {text: 'Home', route: '/'},
             {text: 'Wishlist', route: '/wishlist'},
             {text: 'Categories', route: '/categories'},
             {text: 'Cart', route: '/cart'},

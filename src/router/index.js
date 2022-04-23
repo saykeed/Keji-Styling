@@ -38,17 +38,17 @@ const routes = [
     component: () => import('../views/Admin_page/Dashboard.vue')
   },
   {
-    path: '/admin/post',
+    path: '/admin_page/dashboard/Products/post',
     name: 'Post',
     component: () => import('../views/Admin_page/Post.vue')
   },
   {
-    path: '/admin/delete',
+    path: '/admin_page/dashboard/Products/delete',
     name: 'Delete',
     component: () => import('../views/Admin_page/Delete.vue')
   },
   {
-    path: '/admin/update',
+    path: '/admin_page/dashboard/Products/update',
     name: 'Update',
     component: () => import('../views/Admin_page/Update.vue')
   }

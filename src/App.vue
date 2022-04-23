@@ -51,7 +51,7 @@ export default {
 
        // computed properties
        const headerStatus = computed(() => {
-          let forbidden = ['Update', 'Post', 'Delete']
+          let forbidden = ['Update', 'Post', 'Delete', 'Login']
           if(forbidden.includes(route.name)) {
             return false
           } else{

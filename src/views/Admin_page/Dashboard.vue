@@ -7,20 +7,49 @@
         >
             {{ link.text }}
         </router-link>
+        <button @click="logoutUser">Logout</button>
     </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { getAuth, onAuthStateChanged, signOut  } from "firebase/auth";
+import { useRouter } from 'vue-router'
+
 export default {
     setup() {
+        // variables
+        const auth = getAuth();
+        const router = useRouter();
         const links = ref([
-            {text: 'Post Products', route: '/admin/post'},
-            {text: 'Update Products', route: '/admin/update'},
-            {text: 'Delete Products', route: '/admin/delete'}
+            {text: 'Post Products', route: '/admin_page/dashboard/Products/post'},
+            {text: 'Update Products', route: '/admin_page/dashboard/Products/update'},
+            {text: 'Delete Products', route: '/admin_page/dashboard/Products/delete'}
         ])
 
-      return { links }
+        //functions
+        const logoutUser = () => {
+            signOut(auth).then(() => {
+                alert('signed out successfully')
+            }).catch((error) => {
+                console.log('error happened')
+            });
+        }
+
+
+        // mounted
+        onMounted(() => {
+            onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log(user)
+                alert('Welcome Admin')
+            } else {
+                router.push('/login')
+            }
+            });
+        })
+
+      return { links, logoutUser }
     }
 }
 </script>
@@ -55,6 +84,15 @@ export default {
                 color: white;
             }
 
+        }
+        button{
+            background: $kejiBlue;
+            color: white;
+            line-height: 30px;
+            text-align: center;
+            width: 120px;
+            border: none;
+            border-radius: 5px;
         }
     }
 

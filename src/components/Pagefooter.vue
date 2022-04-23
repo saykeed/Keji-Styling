@@ -1,6 +1,7 @@
 <template>
     <div class="pagefooter">
-       <p> Copyright © 2022 <span>Keji Styling</span> all rights reserved. Powered by Saykeed</p>
+       <p> Copyright © 2022 <span>Keji Styling</span> all rights reserved.</p>
+       <p>Powered by Saykeed</p>
     </div>
 </template>
 
