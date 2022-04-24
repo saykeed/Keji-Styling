@@ -11,6 +11,9 @@
               @productRemoved="reloadCart"
             />
         </div>
+        <div v-else>
+            No product on wishlist
+        </div>
     </div>
 </template>
 

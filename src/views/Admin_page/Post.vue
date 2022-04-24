@@ -72,7 +72,7 @@ export default {
                 imgUrl: photoUrl.value
             })
             .then((snap) => {
-                console.log('uploaded success')
+                alert('Product Uploaded Successfully')
                 getForm.value.reset()
             })
             .catch(err => {
