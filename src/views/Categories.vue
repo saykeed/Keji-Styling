@@ -1,6 +1,7 @@
 <template>
     <div class="categories">
-        i am the categories page
+        <h1>Our Category page will be updated soon with all sort of product you'll ever need</h1>
+
     </div>
 </template>
 

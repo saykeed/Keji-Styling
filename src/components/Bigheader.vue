@@ -10,7 +10,7 @@
                 <router-link :to="link.route">{{ link.text }}</router-link>
             </li>
         </ul>
-        <router-link to="/admin/dashboard" class="admin">Admin Dashboard</router-link>
+        <router-link to="/login" class="admin">Admin Dashboard</router-link>
         
     </div>
 </template>

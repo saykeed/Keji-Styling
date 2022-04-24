@@ -3,7 +3,8 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     fav: 0,
-    cart: 0
+    cart: 0,
+    loading: false
   },
   // getters: {
   // },
@@ -13,6 +14,9 @@ export default createStore({
     },
     updateCart(state, payload) {
       state.cart = payload
+    },
+    updateLoadingStatus(state, payload) {
+      state.loading = payload
     }
   },
   actions: {

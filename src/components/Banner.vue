@@ -27,9 +27,13 @@ export default {
     components: { Slider },
     setup() {
         const images = ref([
-            {img: 'https://cdn.shopify.com/s/files/1/0332/6420/5963/files/Slider3_1080x.jpg?v=1628696608'},
-            {img: 'https://cdn.shopify.com/s/files/1/0332/6420/5963/files/Slider2_1080x.jpg?v=1628696591'},
-            {img: 'https://cdn.shopify.com/s/files/1/0332/6420/5963/files/Slider1_2100x.jpg?v=1628696569'}
+            {img: 'https://img.freepik.com/free-vector/promotion-fashion-banner_1188-223.jpg?w=2000'},
+            {img: 'https://i.pinimg.com/originals/5c/7a/51/5c7a515af18946223d48e930e4763508.jpg'},
+            // {img: 'https://cdn.shopify.com/s/files/1/0332/6420/5963/files/Slider1_2100x.jpg?v=1628696569'},
+            {img: 'https://i.pinimg.com/originals/fd/0c/84/fd0c84b99f9e6c21e67773552794e8fb.jpg'}
+
+            // 
+            // https://cdn.shopify.com/s/files/1/0332/6420/5963/files/Slider2_1080x.jpg?v=1628696591
         ])
         const visibleSlide = ref(1)
         const slideName = ref('')

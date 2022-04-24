@@ -13,7 +13,7 @@
 
 <script>
 import { onMounted, ref } from 'vue'
-import { getAuth, onAuthStateChanged, signOut  } from "firebase/auth";
+import { getAuth, signOut  } from "firebase/auth";
 import { useRouter } from 'vue-router'
 
 export default {
@@ -31,23 +31,16 @@ export default {
         const logoutUser = () => {
             signOut(auth).then(() => {
                 alert('signed out successfully')
+                router.push('/')
             }).catch((error) => {
                 console.log('error happened')
             });
         }
 
-
-        // mounted
         onMounted(() => {
-            onAuthStateChanged(auth, (user) => {
-            if (user) {
-                console.log(user)
-                alert('Welcome Admin')
-            } else {
-                router.push('/login')
-            }
-            });
+            alert('Welcome Admin')
         })
+        
 
       return { links, logoutUser }
     }

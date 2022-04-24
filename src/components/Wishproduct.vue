@@ -2,7 +2,9 @@
   <div class="product">
       <div v-lazyproduct  class="imgBox">
           <Kejianime class="anime"/>
-          <img :data-url="product.imgUrl" alt="">
+          <router-link :to="`/details/${product.id}`">
+              <img :data-url="product.imgUrl" alt="">
+          </router-link>
           <div class="cart">
             <i class="material-icons" @click="addToCart(product.id)">shopping_cart</i>
         </div>
@@ -28,8 +30,8 @@ export default {
             mounted: (el) => {
                 function loadImage() {
                     const anime = el.children[0]
-                    const imageElement = el.children[1]
-                    // console.log(imageElement)
+                    const imageElement = el.children[1].children[0]
+                    //console.log(imageElement)
                     if (imageElement) {
                     imageElement.addEventListener("load", () => {
                         anime.style.display = 'none';
@@ -145,13 +147,20 @@ export default {
             top: 0;
         }
 
-        img{
+        a{
+            display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover;
             position: absolute;
             left: 0;
             top: 0;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                
+            }
         }
 
         .otherInfo{

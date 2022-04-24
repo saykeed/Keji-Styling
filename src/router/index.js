@@ -27,11 +27,11 @@ const routes = [
     name: 'Wishlist',
     component: () => import('../views/Wishlist.vue')
   },
-  // {
-  //   path: '/post',
-  //   name: 'Post',
-  //   component: () => import('../views/Post.vue')
-  // },
+  {
+    path: '/details/:id',
+    name: 'Details',
+    component: () => import('../views/Details.vue')
+  },
   {
     path: '/admin/dashboard',
     name: 'Dashboard',

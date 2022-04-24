@@ -18,6 +18,10 @@
     v-if="headerStatus"
     class="generalFooter"
   />
+
+  <Loading 
+    v-if="loadingStatus"
+  />
 </template>
 
 <script>
@@ -25,16 +29,19 @@ import Header from './components/Header.vue'
 import Bigheader from './components/Bigheader.vue'
 import Footer from './components/Footer.vue'
 import Sidebar from './components/Sidebar.vue'
-import { computed, ref,} from 'vue'
+import Loading from './components/Loading.vue'
+import { computed, onMounted, ref,} from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import {useStore} from 'vuex'
 
 export default {
-  components: { Header, Footer, Sidebar, Bigheader },
+  components: { Header, Footer, Sidebar, Bigheader, Loading },
   setup() {
         // variables
         const sidebarStatus = ref(false)
         const router = useRouter()
         const route = useRoute()
+        const store = useStore()
     
 
         // functions
@@ -46,7 +53,6 @@ export default {
         // router navigation guards
         router.afterEach(() => {
           sidebarStatus.value = false;
-          console.log(window.innerWidth)
         })
 
        // computed properties
@@ -59,10 +65,17 @@ export default {
           }
        })
 
-       
+       const loadingStatus = computed(() => {
+         return store.state.loading
+       })
 
+        // import {useStore} from 'vuex'
+        // const store = useStore()
+        // store.commit('updateLoadingStatus', true)
+       
+       
         
-    return { sidebarStatus, toggleSidebar, headerStatus }
+    return { sidebarStatus, toggleSidebar, headerStatus, loadingStatus }
   },
 }
 </script>

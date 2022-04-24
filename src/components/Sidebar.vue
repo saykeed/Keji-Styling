@@ -29,7 +29,7 @@ export default {
             {text: 'Wishlist', route: '/wishlist'},
             {text: 'Categories', route: '/categories'},
             {text: 'Cart', route: '/cart'},
-            {text: 'Admin Login', route: '/admin/dashboard'}
+            {text: 'Admin Login', route: '/login'}
         ])
 
 
