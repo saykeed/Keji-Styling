@@ -10,6 +10,7 @@
                 :product="product"
                 @productRemoved="reloadCart"
             />
+            <button @click="proceed">Proceed</button>
         </div>
         <div v-else>
             Empty cart
@@ -38,10 +39,17 @@ export default {
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
-            cartpro.value.push({...docSnap.data(), id: docSnap.id});
+                cartpro.value.push({...docSnap.data(), id: docSnap.id});
             } else {
-            console.log("No such document!");
+                console.log("No such document!");
+                deleteFromCart(id)
             }
+        }
+        const deleteFromCart = (id) => {
+            let carted = JSON.parse(localStorage.getItem('cart'))
+            localStorage.setItem('cart', JSON.stringify(carted.filter(favId => favId !== id)));
+            // emit('productRemoved', [id])
+            store.dispatch('getCartAmount')
         }
         const loadCart = () => {
             if (!localStorage.getItem('cart')) {
@@ -59,13 +67,17 @@ export default {
             cartpro.value = cartpro.value.filter(item => item.id != id)
             
         }
+        const proceed = () => {
+            alert('proceeding')
+            
+        }
 
         // mounted
         onMounted(() => {
             loadCart()
         })
 
-      return { cartpro, reloadCart }
+      return { cartpro, reloadCart, proceed }
     }
 }
 </script>

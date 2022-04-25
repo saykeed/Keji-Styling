@@ -60,6 +60,17 @@ export default {
                 break;
             }
         }
+        
+        // mounted hooks
+        onMounted(() => {
+            setInterval(() => {
+                if(visibleSlide.value >= images.value.length -1) {
+                    visibleSlide.value = 0
+                } else {
+                    visibleSlide.value++
+                }
+            }, 4000);
+        })
 
       return { images, visibleSlide, slide, slideName }
     }

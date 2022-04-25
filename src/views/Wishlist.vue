@@ -36,10 +36,18 @@ export default {
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
-            wishpro.value.push({...docSnap.data(), id: docSnap.id});
+                wishpro.value.push({...docSnap.data(), id: docSnap.id});
             } else {
-            console.log("No such document!");
+                console.log("No such document!");
+                deleteFromLS(id)
             }
+        }
+        // function that deletes from local storage
+        const deleteFromLS =  (id) => {
+            let favs = JSON.parse(localStorage.getItem('favorites'))
+            localStorage.setItem('favorites', JSON.stringify(favs.filter(favId => favId !== id)));
+            
+            store.dispatch('getFavAmount')
         }
         const loadCart = () => {
             if (!localStorage.getItem('favorites')) {

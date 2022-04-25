@@ -11,6 +11,7 @@
     "firebase": "^9.6.8",
     "gsap": "^3.9.1",
     "vue": "^3.0.0",
+    "vue-goodshare": "^1.6.1",
     "vue-router": "^4.0.0-0",
     "vue3-lazy": "^1.0.0-alpha.1",
     "vue3-lazyload": "^0.2.5-beta",
